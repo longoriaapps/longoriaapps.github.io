@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="MorpheusREM transforms Apple Health sleep data into clear nightly analysis, REM dream windows, history, and weekly trends." />
+  <title>MorpheusREM | Dreams remembered. Sleep understood.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .la-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .la-brand .la-logo {
+      display: block;
+      width: 46px;
+      height: 46px;
+      object-fit: cover;
+      border-radius: 11px;
+      box-shadow: 0 8px 24px rgba(0, 55, 180, 0.34);
+      flex: 0 0 46px;
+    }
+
+    .la-brand-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 2px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .la-brand-copy strong {
+      display: block;
+      margin: 0;
+      color: #fff;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .la-brand-copy small {
+      display: block;
+      margin: 0;
+      color: #dbe4ec;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 1.15;
+      text-transform: none;
+    }
+
+    .site-footer .la-footer-brand {
+      margin: 0;
+    }
+
+    @media (max-width: 520px) {
+      .la-brand .la-logo {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+      }
+
+      .la-brand-copy strong {
+        font-size: 14px;
+      }
+
+      .site-header .la-brand-copy small {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand la-brand" href="../index.html" aria-label="Longoria Apps home">
+      <img class="la-logo" src="assets/branding/la-logo.png" alt="">
+      <span class="la-brand-copy">
+        <strong>LONGORIA APPS</strong>
+        <small>Building apps with purpose</small>
+      </span>
+    </a>
+    <nav aria-label="Primary navigation">
+      <a href="#features">Features</a>
+      <a href="#privacy">Privacy</a>
+      <a class="nav-cta" href="#download">View on App Store</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-shell">
+      <div class="hero-copy reveal">
+        <div class="app-identity">
+          <img src="assets/screens/IMG_7658.PNG" alt="MorpheusREM app icon" class="app-icon-crop" />
+          <div>
+            <p class="eyebrow">MORPHEUSREM</p>
+            <p class="micro">Sleep insights for iPhone</p>
+          </div>
+        </div>
+        <h1>Understand your sleep.<br><span>Unlock better nights.</span></h1>
+        <p class="lede">MorpheusREM turns Apple Health sleep data into clear nightly reports, REM dream windows, personal history, and meaningful weekly trends.</p>
+        <div class="hero-actions">
+          <a href="#download" class="button button-primary">View on the App Store</a>
+          <a href="#features" class="button button-secondary">Explore features</a>
+        </div>
+        <div class="trust-row" aria-label="Highlights">
+          <span>Apple Health</span><span>Private by design</span><span>No account required</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal delay-1" aria-label="MorpheusREM app preview">
+        <div class="moon-glow"></div>
+        <div class="phone phone-main"><img src="assets/screens/IMG_7659.PNG" alt="MorpheusREM nightly analysis screen" /></div>
+        <div class="phone phone-side phone-side-left"><img src="assets/screens/IMG_7660.PNG" alt="MorpheusREM dream windows screen" /></div>
+        <div class="phone phone-side phone-side-right"><img src="assets/screens/IMG_7662.PNG" alt="MorpheusREM sleep history screen" /></div>
+      </div>
+    </section>
+
+    <section class="intro-strip" id="features">
+      <div class="section-shell stats-grid reveal">
+        <div><strong>Nightly</strong><span>Sleep score and stage analysis</span></div>
+        <div><strong>REM</strong><span>Automatically detected dream windows</span></div>
+        <div><strong>Weekly</strong><span>Comparisons, highlights, and coaching</span></div>
+        <div><strong>Private</strong><span>Your health data remains yours</span></div>
+      </div>
+    </section>
+
+    <section class="feature section-shell split">
+      <div class="feature-copy reveal">
+        <p class="eyebrow">YOUR NIGHT AT A GLANCE</p>
+        <h2>Wake up to a clearer picture.</h2>
+        <p>MorpheusREM distills the night into the details that matter: total sleep, efficiency, awakenings, sleep stages, and an easy-to-read timeline.</p>
+        <ul class="check-list">
+          <li>Nightly sleep score and plain-language summary</li>
+          <li>REM, Core, Deep, and Awake stage breakdowns</li>
+          <li>Heart rate and respiratory context from Apple Health</li>
+        </ul>
+      </div>
+      <div class="visual-card reveal delay-1">
+        <div class="phone single-phone"><img src="assets/screens/IMG_7659.PNG" alt="Nightly Analysis with sleep score and sleep stages" /></div>
+        <div class="floating-note note-top"><b>80</b><span>Sleep score</span></div>
+        <div class="floating-note note-bottom"><b>100%</b><span>Sleep efficiency</span></div>
+      </div>
+    </section>
+
+    <section class="feature feature-dark full-bleed">
+      <div class="section-shell split reverse">
+        <div class="dream-visual reveal">
+          <div class="orb orb-one"></div><div class="orb orb-two"></div>
+          <div class="phone dream-phone"><img src="assets/screens/IMG_7660.PNG" alt="Detected REM dream windows" /></div>
+          <div class="phone timeline-phone"><img src="assets/screens/IMG_7661.PNG" alt="Full sleep timeline with REM dream windows" /></div>
+        </div>
+        <div class="feature-copy reveal delay-1">
+          <p class="eyebrow gold">DREAM WINDOWS</p>
+          <h2>Find the moments when dreams were most likely unfolding.</h2>
+          <p>MorpheusREM identifies REM periods throughout the night and presents each one as a Dream Window, giving your dream journal a meaningful place in time.</p>
+          <div class="mini-grid">
+            <div><span class="mini-icon">☾</span><b>Detected automatically</b><small>See every REM window in one view.</small></div>
+            <div><span class="mini-icon">✎</span><b>Ready for reflection</b><small>Record or transcribe memories while they are fresh.</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature section-shell split">
+      <div class="feature-copy reveal">
+        <p class="eyebrow">SLEEP HISTORY</p>
+        <h2>Every night becomes part of the story.</h2>
+        <p>Review up to 30 nights of sleep history, compare patterns at a glance, and revisit the details behind any night.</p>
+        <div class="pill-row"><span>Sleep duration</span><span>Dream windows</span><span>Heart rate</span><span>Respiratory rate</span></div>
+      </div>
+      <div class="history-card reveal delay-1">
+        <img src="assets/screens/IMG_7662.PNG" alt="MorpheusREM 30-night sleep history" />
+      </div>
+    </section>
+
+    <section class="feature weekly-section full-bleed">
+      <div class="section-shell weekly-layout">
+        <div class="weekly-copy reveal">
+          <p class="eyebrow gold">WEEKLY ANALYSIS</p>
+          <h2>See what changed, what improved, and what deserves attention.</h2>
+          <p>Weekly reports combine stage averages, best and least restful nights, week-over-week comparisons, a summary, and a practical coaching tip.</p>
+          <div class="score-card"><span>Weekly grade</span><strong>A</strong><small>90 / 100</small></div>
+        </div>
+        <div class="weekly-phones reveal delay-1">
+          <div class="phone weekly-phone-one"><img src="assets/screens/IMG_7663.PNG" alt="MorpheusREM weekly sleep analysis" /></div>
+          <div class="phone weekly-phone-two"><img src="assets/screens/IMG_7664.PNG" alt="MorpheusREM weekly comparison and coaching tip" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="health-section section-shell">
+      <div class="section-heading reveal">
+        <p class="eyebrow">BUILT AROUND APPLE HEALTH</p>
+        <h2>The sleep signals you already collect, finally made understandable.</h2>
+      </div>
+      <div class="health-grid reveal delay-1">
+        <article><span>☾</span><h3>REM Sleep</h3><p>Dream-associated sleep linked with memory and emotional processing.</p></article>
+        <article><span>zzz</span><h3>Core Sleep</h3><p>The lighter stage that makes up much of a typical night.</p></article>
+        <article><span>◐</span><h3>Deep Sleep</h3><p>Restorative sleep important for physical repair and renewal.</p></article>
+        <article><span>♥</span><h3>Heart Rate</h3><p>Nightly cardiovascular context drawn from Apple Health.</p></article>
+      </div>
+    </section>
+
+    <section class="privacy-section full-bleed" id="privacy">
+      <div class="section-shell privacy-layout">
+        <div class="privacy-copy reveal">
+          <p class="eyebrow gold">PRIVATE BY DESIGN</p>
+          <h2>Your sleep is personal.<br>Your data should be too.</h2>
+          <p>MorpheusREM reads sleep information only with your permission. It does not require an account, serve advertisements, or turn private health data into a product.</p>
+          <div class="privacy-points"><span>No account</span><span>No advertising</span><span>Health access requires permission</span></div>
+        </div>
+        <div class="about-phone reveal delay-1"><div class="phone"><img src="assets/screens/IMG_7665.PNG" alt="MorpheusREM About and Privacy screen" /></div></div>
+      </div>
+    </section>
+
+    <section class="closing section-shell" id="download">
+      <div class="closing-card reveal">
+        <div class="closing-moon">☾</div>
+        <p class="eyebrow">MORPHEUSREM</p>
+        <h2>Dreams remembered.<br>Sleep understood.</h2>
+        <p>Turn last night’s sleep into insight you can use tonight.</p>
+        <a href="#" class="button button-primary">View on the App Store</a>
+        <small>Designed for iPhone. Apple Watch sleep data is read through Apple Health.</small>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <div class="brand la-brand la-footer-brand">
+      <img class="la-logo" src="assets/branding/la-logo.png" alt="">
+      <span class="la-brand-copy">
+        <strong>LONGORIA APPS</strong>
+        <small>Building apps with purpose</small>
+      </span>
+    </div>
+    <p>© 2026 Longoria Apps. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
