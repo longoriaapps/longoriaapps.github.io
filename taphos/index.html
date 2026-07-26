@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Taphos helps families capture memorials, read inscriptions with AI, preserve relationships, and map family history." />
+  <title>Taphos | Longoria Apps</title>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <style>
+    :root {
+      --ink: #102343;
+      --muted: #5f6e83;
+      --blue: #123f9b;
+      --blue-2: #245bc2;
+      --deep: #071a37;
+      --ivory: #f7f1e4;
+      --paper: #fffdf8;
+      --gold: #c59b4a;
+      --sage: #7a937f;
+      --line: rgba(16,35,67,.12);
+      --shadow: 0 28px 70px rgba(7,26,55,.18);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1180px, calc(100% - 40px)); margin: 0 auto; }
+    .serif { font-family: Georgia, "Times New Roman", serif; }
+
+    .site-header {
+      position: fixed; inset: 0 0 auto; z-index: 100;
+      height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 max(24px, calc((100vw - 1180px) / 2));
+      background: rgba(255,253,248,.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(16,35,67,.08);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 750; letter-spacing: -.02em; }
+    .brand .la-logo {
+      width: 42px; height: 42px; border-radius: 13px; object-fit: cover;
+      box-shadow: 0 8px 18px rgba(18,63,155,.25);
+    }
+    .brand strong { display: block; font-size: 15px; }
+    .brand small { display: block; font-size: 11px; color: var(--muted); font-weight: 600; }
+    .menu-button { display: none; }
+    #site-nav { display: flex; align-items: center; gap: 28px; font-size: 14px; color: #42516a; }
+    #site-nav a:hover { color: var(--blue); }
+
+    .hero {
+      min-height: 940px;
+      padding: 150px 0 100px;
+      position: relative;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(197,155,74,.18), transparent 25%),
+        linear-gradient(180deg, #fffdf8 0%, #f4eddf 100%);
+      overflow: hidden;
+    }
+    .hero::after {
+      content: ""; position: absolute; width: 720px; height: 720px; border-radius: 50%;
+      right: -270px; bottom: -330px; border: 1px solid rgba(18,63,155,.12);
+      box-shadow: 0 0 0 90px rgba(18,63,155,.03), 0 0 0 180px rgba(18,63,155,.025);
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 74px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; text-transform: uppercase; letter-spacing: .18em; font-size: 12px; font-weight: 800; color: var(--blue); }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: var(--gold); }
+    h1 { margin: 22px 0 24px; font-size: clamp(64px, 8vw, 108px); line-height: .88; letter-spacing: -.055em; font-weight: 600; }
+    .hero h2 { margin: 0 0 24px; font-size: clamp(29px, 4vw, 48px); line-height: 1.06; font-weight: 500; letter-spacing: -.035em; }
+    .hero p { max-width: 610px; color: var(--muted); font-size: 19px; line-height: 1.7; }
+    .actions { display: flex; gap: 14px; margin-top: 34px; flex-wrap: wrap; }
+    .button { padding: 15px 21px; border-radius: 999px; font-weight: 750; display: inline-flex; align-items: center; gap: 9px; }
+    .button.primary { background: var(--blue); color: white; box-shadow: 0 15px 30px rgba(18,63,155,.25); }
+    .button.secondary { border: 1px solid var(--line); background: rgba(255,255,255,.55); }
+    .mini-proof { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 38px; color: #526176; font-size: 13px; font-weight: 650; }
+    .mini-proof span::before { content: "✓"; margin-right: 7px; color: var(--sage); font-weight: 900; }
+
+    .hero-art { position: relative; height: 700px; }
+    .halo { position: absolute; inset: 74px 0 auto 60px; width: 540px; height: 540px; border-radius: 50%; background: linear-gradient(145deg, #123f9b, #071a37); box-shadow: var(--shadow); }
+    .halo::before { content: ""; position: absolute; inset: 32px; border: 1px solid rgba(255,255,255,.14); border-radius: 50%; }
+    .phone { position: absolute; width: 252px; padding: 9px; border-radius: 43px; background: #05070c; box-shadow: 0 34px 70px rgba(5,7,12,.38); }
+    .phone img { border-radius: 35px; }
+    .phone.main { top: 10px; left: 90px; transform: rotate(-4deg); z-index: 3; }
+    .phone.side { width: 218px; top: 204px; right: 2px; transform: rotate(7deg); z-index: 4; }
+    .stone-card {
+      position: absolute; left: -20px; bottom: 28px; z-index: 5; width: 300px;
+      padding: 22px; border-radius: 25px; color: white;
+      background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.24);
+      backdrop-filter: blur(17px); box-shadow: 0 24px 50px rgba(7,26,55,.25);
+    }
+    .stone-card strong { display: block; font: 600 23px Georgia, serif; margin: 7px 0; }
+    .stone-card small { color: rgba(255,255,255,.74); line-height: 1.5; }
+
+    section { padding: 110px 0; }
+    .section-head { max-width: 760px; margin-bottom: 55px; }
+    .section-head h2 { margin: 16px 0 18px; font: 600 clamp(40px, 5vw, 68px)/1.03 Georgia, serif; letter-spacing: -.04em; }
+    .section-head p { color: var(--muted); font-size: 18px; line-height: 1.7; }
+
+    .story { background: var(--deep); color: white; position: relative; overflow: hidden; }
+    .story::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 5% 20%, rgba(36,91,194,.45), transparent 28%), radial-gradient(circle at 90% 90%, rgba(197,155,74,.15), transparent 26%); }
+    .story .wrap { position: relative; }
+    .story-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 80px; align-items: center; }
+    .story-copy p { color: rgba(255,255,255,.7); font-size: 18px; line-height: 1.75; }
+    .story-copy h2 { font: 600 clamp(42px, 5vw, 70px)/1.02 Georgia, serif; margin: 16px 0 24px; letter-spacing: -.04em; }
+    .feature-list { margin-top: 32px; display: grid; gap: 16px; }
+    .feature { display: grid; grid-template-columns: 42px 1fr; gap: 14px; align-items: start; }
+    .feature-icon { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,.1); color: #f0c66f; font-weight: 900; }
+    .feature b { display: block; margin: 2px 0 5px; }
+    .feature span { color: rgba(255,255,255,.61); font-size: 14px; line-height: 1.5; }
+    .screen-stack { position: relative; height: 680px; }
+    .screen-stack .phone:nth-child(1) { width: 250px; left: 18px; top: 66px; transform: rotate(-7deg); }
+    .screen-stack .phone:nth-child(2) { width: 268px; right: 40px; top: 0; transform: rotate(5deg); }
+
+    .three-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .info-card { padding: 34px; border: 1px solid var(--line); border-radius: 28px; background: white; box-shadow: 0 20px 50px rgba(16,35,67,.07); }
+    .number { color: var(--gold); font: 600 46px Georgia, serif; }
+    .info-card h3 { font: 600 27px Georgia, serif; margin: 18px 0 12px; }
+    .info-card p { color: var(--muted); line-height: 1.65; margin: 0; }
+
+    .ai { background: #edf2fb; }
+    .ai-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 75px; align-items: center; }
+    .ai-visual { position: relative; height: 670px; }
+    .ai-visual .phone:first-child { left: 40px; top: 0; width: 265px; transform: rotate(-4deg); }
+    .ai-visual .phone:last-child { right: 25px; bottom: 0; width: 240px; transform: rotate(5deg); }
+    .ai-badge { position: absolute; z-index: 6; left: 220px; top: 280px; width: 190px; padding: 18px; background: white; border-radius: 20px; box-shadow: var(--shadow); }
+    .ai-badge b { display: block; margin-bottom: 7px; }
+    .ai-badge span { color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .checklist { display: grid; gap: 14px; margin-top: 28px; }
+    .checklist div { display: flex; gap: 12px; align-items: center; padding: 15px 17px; border-radius: 15px; background: rgba(255,255,255,.66); font-weight: 700; }
+    .checklist div::before { content: "✓"; color: var(--blue); }
+
+    .map-section { background: var(--ivory); }
+    .map-grid { display: grid; grid-template-columns: .88fr 1.12fr; gap: 74px; align-items: center; }
+    .map-phone { width: 320px; margin: auto; position: relative; padding: 11px; border-radius: 50px; background: #04070d; box-shadow: var(--shadow); }
+    .map-phone img { border-radius: 41px; }
+    .map-phone::before, .map-phone::after { content: ""; position: absolute; border: 1px solid rgba(18,63,155,.15); border-radius: 50%; inset: 22%; }
+    .map-phone::before { transform: scale(1.65); }
+    .map-phone::after { transform: scale(2.2); }
+    .map-copy h2 { font: 600 clamp(42px, 5vw, 68px)/1.02 Georgia, serif; letter-spacing: -.04em; margin: 16px 0 24px; }
+    .map-copy p { color: var(--muted); font-size: 18px; line-height: 1.75; }
+
+    .gallery { overflow: hidden; }
+    .screen-row { display: flex; gap: 24px; width: max-content; animation: drift 34s linear infinite; }
+    .screen-row:hover { animation-play-state: paused; }
+    .screen-row .phone { position: relative; width: 220px; flex: 0 0 220px; transform: none; box-shadow: 0 25px 50px rgba(7,26,55,.22); }
+    @keyframes drift { to { transform: translateX(-50%); } }
+
+    .privacy { background: white; }
+    .privacy-card { padding: 58px; border-radius: 35px; background: linear-gradient(145deg, #123f9b, #071a37); color: white; display: grid; grid-template-columns: 1.2fr .8fr; gap: 60px; align-items: center; overflow: hidden; position: relative; }
+    .privacy-card::after { content: ""; position: absolute; width: 400px; height: 400px; border-radius: 50%; right: -170px; top: -210px; border: 70px solid rgba(255,255,255,.04); }
+    .privacy-card h2 { font: 600 clamp(40px, 5vw, 64px)/1.03 Georgia, serif; margin: 12px 0 18px; }
+    .privacy-card p { color: rgba(255,255,255,.7); line-height: 1.7; font-size: 17px; }
+    .privacy-points { display: grid; gap: 12px; }
+    .privacy-points div { padding: 16px 18px; border-radius: 15px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.12); font-weight: 700; }
+
+    .final { padding: 130px 0; text-align: center; background: linear-gradient(180deg, #fffdf8, #f4eddf); }
+    .final-mark { width: 96px; height: 96px; border-radius: 28px; margin: 0 auto 28px; overflow: hidden; box-shadow: 0 18px 35px rgba(18,63,155,.25); }
+    .final-mark img { width: 100%; height: 100%; object-fit: cover; object-position: center; transform: scale(1.9); }
+    .final h2 { font: 600 clamp(46px, 6vw, 82px)/1 Georgia, serif; margin: 0 auto 20px; letter-spacing: -.045em; max-width: 900px; }
+    .final p { color: var(--muted); font-size: 19px; max-width: 660px; margin: 0 auto 32px; line-height: 1.7; }
+    footer { padding: 28px 0; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+    footer .wrap { display: flex; justify-content: space-between; gap: 20px; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: .75s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .menu-button {
+        display: block; background: white; color: var(--ink);
+        border: 1px solid var(--line); border-radius: 10px;
+        padding: 9px 14px; font-weight: 700; font-size: 13px;
+      }
+      #site-nav {
+        display: none; position: absolute; top: 62px; right: 20px;
+        flex-direction: column; align-items: flex-start; gap: 4px;
+        background: white; border: 1px solid var(--line); border-radius: 14px;
+        padding: 14px 18px; box-shadow: var(--shadow);
+      }
+      #site-nav.open { display: flex; }
+      .hero { min-height: auto; }
+      .hero-grid, .story-grid, .ai-grid, .map-grid, .privacy-card { grid-template-columns: 1fr; }
+      .hero-art { margin-top: 10px; height: 660px; }
+      .story-copy { order: 1; }
+      .screen-stack { order: 2; }
+      .three-cards { grid-template-columns: 1fr; }
+      .ai-copy { order: 1; }
+      .ai-visual { order: 2; }
+      .privacy-card { padding: 40px 28px; }
+    }
+    @media (max-width: 600px) {
+      .wrap { width: min(100% - 26px, 1180px); }
+      .site-header { height: 64px; padding-inline: 16px; }
+      .brand small { display: none; }
+      .hero { padding-top: 115px; }
+      h1 { font-size: 68px; }
+      .hero-art, .screen-stack, .ai-visual { transform: scale(.82); transform-origin: top center; margin-bottom: -100px; }
+      .phone.main { left: 10px; }
+      .phone.side { right: -20px; }
+      section { padding: 82px 0; }
+      .section-head { margin-bottom: 38px; }
+      .privacy-card { border-radius: 25px; }
+      footer .wrap { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .screen-row { animation: none; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="../index.html" aria-label="Longoria Apps home">
+    <img class="la-logo" src="assets/la-logo.png" alt="Longoria Apps LA logo">
+    <span><strong>LONGORIA APPS</strong><small>Building apps with purpose</small></span>
+  </a>
+  <button class="menu-button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+  <nav id="site-nav" aria-label="Primary navigation">
+    <a href="#top">Home</a>
+    <a href="#story">Story</a>
+    <a href="#ai">AI</a>
+    <a href="#map">Map</a>
+    <a href="#preserve">Discover</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="reveal">
+        <span class="eyebrow">Family history, preserved</span>
+        <h1 class="serif">Taphos</h1>
+        <h2>Every memorial has a story.</h2>
+        <p>Capture a memorial, preserve its inscription, map its location, and connect the relationships that turn names and dates into family history.</p>
+        <div class="actions">
+          <a class="button primary" href="#story">Explore Taphos <span>→</span></a>
+          <a class="button secondary" href="#ai">See AI transcription</a>
+        </div>
+        <div class="mini-proof"><span>Real memorial photography</span><span>Human-verified text</span><span>Private iCloud sync</span></div>
+      </div>
+      <div class="hero-art reveal" aria-label="Taphos application screens">
+        <div class="halo"></div>
+        <div class="phone main"><img src="assets/taphos-memorial.jpg" alt="Taphos memorial record" /></div>
+        <div class="phone side"><img src="assets/taphos-home.jpg" alt="Taphos home screen" /></div>
+        <div class="stone-card"><small>Captured. Read. Remembered.</small><strong>A memorial becomes a story.</strong><small>Taphos preserves the photograph, inscription, location, people, dates, and relationships together.</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="story" id="story">
+    <div class="wrap story-grid">
+      <div class="story-copy reveal">
+        <span class="eyebrow" style="color:#f0c66f">More than a photograph</span>
+        <h2>Preserve what the stone can no longer say clearly.</h2>
+        <p>Weather fades lettering. Time scatters records. Family stories become fragments. Taphos brings the pieces back together in one carefully organized memorial archive.</p>
+        <div class="feature-list">
+          <div class="feature"><div class="feature-icon">01</div><div><b>Capture with context</b><span>Photograph the memorial and retain the cemetery, address, visit date, and photographer.</span></div></div>
+          <div class="feature"><div class="feature-icon">02</div><div><b>Preserve the inscription</b><span>Keep the original photograph, an enhanced image, AI draft, and final human-verified transcription.</span></div></div>
+          <div class="feature"><div class="feature-icon">03</div><div><b>Connect the family</b><span>Record spouses, parents, children, siblings, and genealogical branches around the memorial.</span></div></div>
+        </div>
+      </div>
+      <div class="screen-stack reveal">
+        <div class="phone"><img src="assets/taphos-capture.jpg" alt="Taphos new memorial capture screen" /></div>
+        <div class="phone"><img src="assets/taphos-archive.jpg" alt="Taphos inscription archive screen" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preserve">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">A complete memorial record</span>
+        <h2>From cemetery visit to family archive.</h2>
+        <p>Taphos follows a clear path: capture the stone, recover the inscription, confirm the details, and place the person within a living family record.</p>
+      </div>
+      <div class="three-cards">
+        <article class="info-card reveal"><div class="number">01</div><h3>Capture</h3><p>Simple guidance helps frame the entire memorial, keep text sharp, and include the surrounding context needed for a useful record.</p></article>
+        <article class="info-card reveal"><div class="number">02</div><h3>Verify</h3><p>AI creates a transcription draft, but the final inscription remains clearly marked until a person reviews and verifies it.</p></article>
+        <article class="info-card reveal"><div class="number">03</div><h3>Connect</h3><p>Relationships, dates, notes, photographs, and genealogy branches transform a solitary record into connected history.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ai" id="ai">
+    <div class="wrap ai-grid">
+      <div class="ai-visual reveal">
+        <div class="phone"><img src="assets/taphos-verified.jpg" alt="Verified AI transcription in Taphos" /></div>
+        <div class="phone"><img src="assets/taphos-ai-settings.jpg" alt="Taphos AI provider settings" /></div>
+        <div class="ai-badge"><b>Human Verified</b><span>AI assists with difficult lettering. You retain the final word.</span></div>
+      </div>
+      <div class="ai-copy reveal">
+        <span class="eyebrow">AI that serves the record</span>
+        <div class="section-head" style="margin-bottom:0">
+          <h2>Read weathered inscriptions with greater confidence.</h2>
+          <p>Traditional OCR can stumble over worn granite, shadows, decorative lettering, and fragmented dates. Taphos can send a memorial photograph to your selected AI provider and return an unverified draft for careful review.</p>
+        </div>
+        <div class="checklist">
+          <div>Original and enhanced photographs remain together</div>
+          <div>AI output is clearly identified as a draft</div>
+          <div>Human verification completes the record</div>
+          <div>Your own provider and API key remain optional</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-section" id="map">
+    <div class="wrap map-grid">
+      <div class="map-phone reveal"><img src="assets/taphos-map.jpg" alt="Taphos cemetery memorial map" /></div>
+      <div class="map-copy reveal">
+        <span class="eyebrow">History has a place</span>
+        <h2>Return to the exact memorial.</h2>
+        <p>Memorial pins preserve where each person rests. Numbered clusters make family plots and nearby records easier to understand, while labels keep the cemetery landscape legible rather than turning it into a pin-shaped thunderstorm.</p>
+        <p>Search by person, cemetery, date, inscription, relationship, or note to move from a physical location to the record you need.</p>
+        <div class="actions"><a class="button primary" href="#screens">View the screens</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery" id="screens">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Designed for the field and the archive</span>
+        <h2>One quiet, focused workspace.</h2>
+        <p>Capture, registry, map, search, genealogy, AI settings, export, and iCloud synchronization all share the same calm cobalt interface.</p>
+      </div>
+    </div>
+    <div class="screen-row" aria-label="Taphos application screenshot gallery">
+      <div class="phone"><img src="assets/taphos-home.jpg" alt="Home" /></div>
+      <div class="phone"><img src="assets/taphos-search.jpg" alt="Search" /></div>
+      <div class="phone"><img src="assets/taphos-genealogy.jpg" alt="Genealogy" /></div>
+      <div class="phone"><img src="assets/taphos-settings.jpg" alt="Settings" /></div>
+      <div class="phone"><img src="assets/taphos-memorial.jpg" alt="Memorial" /></div>
+      <div class="phone"><img src="assets/taphos-home.jpg" alt="Home repeated" /></div>
+      <div class="phone"><img src="assets/taphos-search.jpg" alt="Search repeated" /></div>
+      <div class="phone"><img src="assets/taphos-genealogy.jpg" alt="Genealogy repeated" /></div>
+      <div class="phone"><img src="assets/taphos-settings.jpg" alt="Settings repeated" /></div>
+      <div class="phone"><img src="assets/taphos-memorial.jpg" alt="Memorial repeated" /></div>
+    </div>
+  </section>
+
+  <section class="privacy">
+    <div class="wrap">
+      <div class="privacy-card reveal">
+        <div>
+          <span class="eyebrow" style="color:#f0c66f">Your archive remains yours</span>
+          <h2>Built for preservation, not extraction.</h2>
+          <p>Memorial records and photographs can synchronize privately through the user’s own iCloud account. AI transcription is optional, provider choice remains visible, and export tools keep the archive portable.</p>
+        </div>
+        <div class="privacy-points"><div>Private iCloud synchronization</div><div>Optional AI transcription</div><div>CSV archive export</div><div>On-device photo re-reading</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap reveal">
+      <div class="final-mark"><img src="assets/taphos-launch.jpg" alt="Taphos icon" /></div>
+      <h2>Preserve yesterday. Discover their story.</h2>
+      <p>Taphos gives every memorial a place where the photograph, inscription, location, relationships, and memories can remain together.</p>
+      <a class="button primary" href="#top">Return to Taphos</a>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+<div style="display:flex;align-items:center;gap:16px;">
+<img src="assets/la-logo.png" alt="Longoria Apps" style="width:56px;height:56px;border-radius:14px;">
+<div><div style="font-weight:700;">Longoria Apps</div><div style="font-size:.9rem;opacity:.8;">Building Apps with Purpose</div></div>
+</div>
+<span>Taphos · Family memorial history</span>
+</div></footer>
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const menuButton = document.querySelector('.menu-button');
+  const siteNav = document.querySelector('#site-nav');
+  menuButton?.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+  });
+  siteNav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    siteNav.classList.remove('open');
+    menuButton?.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+</body>
+</html>
