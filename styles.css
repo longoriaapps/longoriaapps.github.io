@@ -75,17 +75,13 @@ a {
   letter-spacing: -0.02em;
 }
 
-.brand-mark {
+.la-logo {
+  display: block;
   width: 34px;
   height: 34px;
+  object-fit: cover;
   border-radius: 10px;
-  display: grid;
-  place-items: center;
-  color: var(--white);
-  background: linear-gradient(145deg, #06a5ff, #0646e9);
   box-shadow: 0 8px 20px rgba(5, 104, 233, 0.25);
-  font-size: 0.8rem;
-  letter-spacing: -0.05em;
 }
 
 nav {
