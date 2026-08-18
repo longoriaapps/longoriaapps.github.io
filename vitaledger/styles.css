@@ -20,7 +20,8 @@ nav a:hover{color:var(--vl-cyan)}
 .store-button{gap:10px;font-size:22px;font-weight:650;line-height:1;cursor:default}
 .store-button[disabled]{opacity:.72}
 .store-button small{display:block;font-size:10px;font-weight:500;margin-bottom:3px;color:var(--vl-muted)}
-.store-button .apple{font-size:24px;color:#fff}
+.store-button .apple{width:18px;height:24px;color:#fff;display:inline-flex}
+.store-button .apple svg{width:100%;height:100%;display:block}
 .store-button.large{min-width:230px}
 .secondary-button{font-weight:750}
 .secondary-button span{color:var(--vl-cyan);font-size:20px;margin-left:8px}
