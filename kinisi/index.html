@@ -4,12 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#040b14">
-  <meta name="description" content="Kinisi Fitness 2.0 combines workout tracking, Guardian live monitoring, and Apple Watch Fall Detection response for iPhone and Apple Watch.">
+  <meta name="description" content="Kinisi Fitness 2.0 combines workout tracking, Guardian live monitoring, heart-rate insights, and recovery for iPhone and Apple Watch.">
   <title>Kinisi Fitness | Longoria Apps</title>
   <link rel="icon" type="image/png" href="/assets/favicon.png">
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="fall-detection.css">
 </head>
 <body>
   <header class="site-header">
@@ -19,7 +18,7 @@
     </a>
     <button class="menu-button" aria-expanded="false" aria-controls="site-nav">Menu</button>
     <nav id="site-nav" aria-label="Primary navigation">
-      <a href="#top">Home</a><a href="#features">Features</a><a href="#guardian">Guardian</a><a href="#fall-detection">Fall Detection</a><a href="#results">Results</a><a href="#download">Download</a>
+      <a href="#top">Home</a><a href="#features">Features</a><a href="#guardian">Guardian</a><a href="#results">Results</a><a href="#download">Download</a>
     </nav>
   </header>
 
@@ -27,15 +26,15 @@
     <section class="hero shell">
       <div class="hero-copy">
         <div class="eyebrow"><span class="runner-icon">◆</span> KINISI</div>
-        <div class="kinisi-version-badge">Apple Watch Fall Detection</div>
+        <div class="kinisi-version-badge">Kinisi Fitness 2.0</div>
         <p class="subbrand">FITNESS &amp; GUARDIAN SAFETY</p>
         <h1>Move with confidence.<br><span>Never Run Alone.</span></h1>
-        <p class="lede">Track every mile, understand every heartbeat, share your workout with Guardian, and respond when Apple Watch reports a fall.</p>
+        <p class="lede">Track every mile, understand every heartbeat, and share your workout with Guardian while trusted contacts follow along.</p>
         <div class="hero-actions">
-          <button class="store-button" type="button" disabled aria-disabled="true"><span class="apple"><svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg></span><span><small>Coming Soon to the</small>App Store</span></button>
+          <button class="store-button" type="button" disabled aria-disabled="true"><span class="apple">●</span><span><small>Coming Soon to the</small>App Store</span></button>
           <a class="secondary-button" href="#guardian">Explore Guardian <span>↓</span></a>
         </div>
-        <div class="trust-row"><span>Live GPS</span><span>Heart Rate</span><span>Fall Response</span><span>Recovery</span></div>
+        <div class="trust-row"><span>Live GPS</span><span>Heart Rate</span><span>Guardian</span><span>Recovery</span></div>
       </div>
 
       <div class="hero-visual" aria-label="Kinisi shown on iPhone and Apple Watch">
@@ -63,46 +62,6 @@
       </div>
     </section>
 
-
-
-    <section id="fall-detection" class="fall-detection shell section-card">
-      <div class="fall-heading">
-        <p class="kicker">NEW IN KINISI 2.0</p>
-        <h2>Apple Watch reports the fall. Kinisi takes it from there.</h2>
-        <p>Kinisi uses Apple’s official Apple Watch Fall Detection API to check whether you are safe and, when needed, send a Guardian assistance request through the people you already trust.</p>
-      </div>
-
-      <div class="fall-grid">
-        <div class="fall-watch-stage" aria-label="Kinisi Fall Detection response screens">
-          <figure class="fall-screen-card primary">
-            <img src="assets/screens/watch-fall-detected.jpg" alt="Kinisi Apple Watch Fall Detected screen with 30-second countdown, I'm Safe, and Send Guardian Alert actions">
-            <figcaption><strong>Fall detected</strong>A clear countdown gives you time to confirm that you are safe or request help.</figcaption>
-          </figure>
-          <figure class="fall-screen-card">
-            <img src="assets/screens/watch-status-confirmed.jpg" alt="Kinisi Apple Watch Status Confirmed screen showing that no Guardian alert was sent">
-            <figcaption><strong>You stay in control</strong>Tap I’m Safe and the countdown, sounds, haptics, and alert pathway stop immediately.</figcaption>
-          </figure>
-        </div>
-
-        <div class="fall-copy-stack">
-          <article class="fall-point"><span>1</span><div><h3>Kinisi checks on you</h3><p>Urgent Watch sounds and haptics accompany a 30-second safety countdown.</p></div></article>
-          <article class="fall-point"><span>2</span><div><h3>Confirm you’re safe</h3><p>One tap ends the incident. No Guardian assistance request is sent.</p></div></article>
-          <article class="fall-point"><span>3</span><div><h3>Request Guardian assistance</h3><p>Tap Send Guardian Alert, or allow the countdown to expire, to begin the Guardian response.</p></div></article>
-        </div>
-      </div>
-
-      <div class="fall-notification">
-        <div class="fall-notification-copy">
-          <p class="kicker">GUARDIAN ASSISTANCE</p>
-          <h3>Your trusted contact receives the message that matters.</h3>
-          <p>When an enabled Guardian contact is available, Kinisi sends a clear assistance notification stating that Apple Watch reported a fall. If the paired iPhone is temporarily unreachable, the incident can be queued for delivery when connectivity returns.</p>
-        </div>
-        <div class="notification-crop"><img src="assets/screens/guardian-fall-alert.jpg" alt="Kinisi Guardian Assistance notification on iPhone after Apple Watch reported a fall"></div>
-      </div>
-
-      <p class="fall-disclaimer">Kinisi Fall Detection supports Guardian assistance. It does not replace Apple Emergency SOS, emergency services, or professional medical care. Fall Detection availability depends on a supported Apple Watch, system permission, and compatible software.</p>
-    </section>
-
     <section id="features" class="features shell">
       <div class="section-heading"><p class="kicker">BUILT FOR THE FULL WORKOUT</p><h2>From the first step to the final heartbeat.</h2></div>
       <div class="feature-grid">
@@ -120,8 +79,8 @@
     </section>
 
     <section id="download" class="download shell">
-      <div><p class="kicker">KINISI FITNESS</p><h2>Ready to move with peace of mind?</h2><p>Workout tracking for iPhone and Apple Watch, with Guardian live monitoring and Fall Detection response built in.</p></div>
-      <button class="store-button large" type="button" disabled aria-disabled="true"><span class="apple"><svg viewBox="0 0 384 512" fill="currentColor" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path></svg></span><span><small>Coming Soon to the</small>App Store</span></button>
+      <div><p class="kicker">KINISI FITNESS</p><h2>Ready to move with peace of mind?</h2><p>Workout tracking for iPhone and Apple Watch, with Guardian live monitoring and user-initiated assistance built in.</p></div>
+      <button class="store-button large" type="button" disabled aria-disabled="true"><span class="apple">●</span><span><small>Coming Soon to the</small>App Store</span></button>
     </section>
   </main>
 
