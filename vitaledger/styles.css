@@ -17,7 +17,7 @@ nav a:hover{color:var(--vl-cyan)}
 .subbrand{color:var(--vl-cyan);font-weight:800;letter-spacing:.08em;font-size:18px;margin:12px 0 0}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:28px}
 .store-button,.secondary-button{border:1px solid #596472;border-radius:15px;min-height:62px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;color:#fff;padding:10px 20px;background:rgba(0,0,0,.42);backdrop-filter:blur(15px)}
-.store-button{gap:10px;font-size:22px;font-weight:650;line-height:1;cursor:default}
+.store-button{gap:10px;font-size:22px;font-weight:650;line-height:1}
 .store-button[disabled]{opacity:.72}
 .store-button small{display:block;font-size:10px;font-weight:500;margin-bottom:3px;color:var(--vl-muted)}
 .store-button .apple{width:18px;height:24px;color:#fff;display:inline-flex}
